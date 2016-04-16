@@ -10,6 +10,7 @@ namespace BombermanGame
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
