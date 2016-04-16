@@ -31,7 +31,6 @@ namespace RenderEngine.Loader
 
         public int LoadTexture(String filename)
         {
-
             if (String.IsNullOrEmpty(filename))
                 throw new ArgumentException(filename);
 
@@ -44,13 +43,13 @@ namespace RenderEngine.Loader
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
             
-            Bitmap bmp = new Bitmap(filename);
-            BitmapData bmp_data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Bitmap image = new Bitmap(filename);
+            BitmapData bmp_data = image.LockBits(new Rectangle(0, 0, image.Width, image.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bmp_data.Width, bmp_data.Height, 0,
                 OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bmp_data.Scan0);
 
-            bmp.UnlockBits(bmp_data);
+            image.UnlockBits(bmp_data);
 
             return id;
         }
@@ -106,24 +105,7 @@ namespace RenderEngine.Loader
             //nu trebuie debindat indicesbuffer. odata bindat. el se adauga automat la vao-ul activ. 
             //cand se debindeaza se detaseaza de la VAO
         }
-
-        private IntPtr GetIntPtr(int[] data)
-        {
-            GCHandle handle = GCHandle.Alloc(data, GCHandleType.Pinned);
-            try
-            {
-                IntPtr pointer = handle.AddrOfPinnedObject();
-                return pointer;
-            }
-            finally
-            {
-                if (handle.IsAllocated)
-                {
-                    handle.Free();
-                }
-            }
-        }
-  
+        
 //        public static Image[][] spriteSheetLoader(String filename, int rows, int cols, int width, int height)
 //        {
 //            //Aceasta functie incarca piesele din fisierul imaginiPiese in matricea de imagini
