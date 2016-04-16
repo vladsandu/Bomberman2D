@@ -17,12 +17,12 @@ namespace RenderEngine.Entities
         public float RotZ { get; set; }
         public float Scale { get; set; }
 
-        public Entity(TexturedModel model, Vector2d position, float width, float height)
+        public Entity(TexturedModel model, Vector2d position)
         {
             Model = model;
             Position = position;
-            Width = width;
-            Height = height;
+            Width = model.RawModel.Width;
+            Height = model.RawModel.Height;
             RotZ = 0;
             Scale = 1;
         }
