@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenTK;
+using RenderEngine.Entities;
 
 namespace RenderEngine.Shaders
 {
@@ -48,17 +49,7 @@ namespace RenderEngine.Shaders
         {
             base.LoadFloat(location_yOffset, value);
         }
-
-        public void loadBackgroundCheck(Boolean value)
-        {
-            base.LoadBoolean(location_isBackground, value);
-        }
-
-        public void loadTextCheck(Boolean value)
-        {
-            base.LoadBoolean(location_isText, value);
-        }
-
+        
         public void loadTransformationMatrix(Matrix4 matrix)
         {
             base.LoadMatrix(location_transformationMatrix, matrix);
