@@ -13,9 +13,9 @@ namespace RenderEngine.Loader
 {
     public class Loader
     {
-        private List<int> vaos = new List<int>();//liste ca sa tinem cont de ele si sa le stergem
-        private List<int> vbos = new List<int>();
-        private List<int> textures = new List<int>();
+        private readonly List<int> _vaos = new List<int>();//liste ca sa tinem cont de ele si sa le stergem
+        private readonly List<int> _vbos = new List<int>();
+        private readonly List<int> _textures = new List<int>();
 
         public RawModel LoadToVAO(float[] positions, float[] textureCoords, int[] indices,
             float widthPercent, float heightPercent)
@@ -59,7 +59,7 @@ namespace RenderEngine.Loader
         {
 
             int vaoID = GL.GenVertexArray(); //creeam
-            vaos.Add(vaoID);
+            _vaos.Add(vaoID);
             GL.BindVertexArray(vaoID);        //bindam
             return vaoID;                         //returnam
 
@@ -68,7 +68,7 @@ namespace RenderEngine.Loader
         private void StoreDataInAttributeList(int attributeNumber, int coordinateSize, float[] data)
         {
             int vboID = GL.GenBuffer(); //acest vbo devine gl_array_buffer-ul. il bindam la el. el e un buffer oarecare.
-            vbos.Add(vboID);    //adaugam in lista pentru a-l putea sterge mai incolo
+            _vbos.Add(vboID);    //adaugam in lista pentru a-l putea sterge mai incolo
             GL.BindBuffer(BufferTarget.ArrayBuffer, vboID); //ca sa il putem folosi trebuie sa il bind-am
             GL.BufferData(BufferTarget.ArrayBuffer, (IntPtr)(data.Length * sizeof(float)), data, BufferUsageHint.StaticDraw); //store into the VAO
             GL.VertexAttribPointer(attributeNumber, coordinateSize, VertexAttribPointerType.Float, false, 0, 0);  //penultimul 0 se refera daca. am si pozitia texturilor si alte lucruri. data vine gen: x0y0z0Texturax0Texturay0Texturaz0x1y1z1. in cazul asta distanta dintre 2 puncte este de alte 3 elemente.
@@ -80,13 +80,13 @@ namespace RenderEngine.Loader
         public void CleanUp()
         {
             //dupa ce se inchide jocul le stergem
-            for (int i = 0; i < vaos.Count; i++)
+            for (int i = 0; i < _vaos.Count; i++)
                 GL.DeleteVertexArray(i);
 
-            for (int i = 0; i < vbos.Count; i++)
+            for (int i = 0; i < _vbos.Count; i++)
                 GL.DeleteBuffer(i);
 
-            for (int i = 0; i < textures.Count; i++)
+            for (int i = 0; i < _textures.Count; i++)
                 GL.DeleteTexture(i);
         }
 
@@ -99,7 +99,7 @@ namespace RenderEngine.Loader
         private void BindIndicesBuffer(int[] indices)
         {
             int vboID = GL.GenBuffer();
-            vbos.Add(vboID);
+            _vbos.Add(vboID);
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, vboID);
             GL.BufferData(BufferTarget.ElementArrayBuffer,
                 (IntPtr)(indices.Length * sizeof(float)), indices, BufferUsageHint.StaticDraw); //store into the VAO
@@ -136,7 +136,7 @@ namespace RenderEngine.Loader
         {
             RawModel rawModel = entity.Model.RawModel;
 
-            GL.DeleteBuffer(vbos.Count - 1); //implementare triviala
+            GL.DeleteBuffer(_vbos.Count - 1); //implementare triviala
 
             GL.BindVertexArray(rawModel.VaoID);
             StoreDataInAttributeList(0, 3, vertices);
