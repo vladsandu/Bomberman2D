@@ -8,7 +8,7 @@ using RenderEngine.Models;
 
 namespace RenderEngine.Entities
 {
-    class Entity
+    public class Entity
     {
         public TexturedModel Model { get; set; }
         public Vector2d Position { get; set; }
@@ -16,13 +16,15 @@ namespace RenderEngine.Entities
         public float Height { get; set; }
         public float RotZ { get; set; }
         public float Scale { get; set; }
+        public int Layer { get; set; }
 
-        public Entity(TexturedModel model, Vector2d position)
+        public Entity(TexturedModel model, Vector2d position, int layer)
         {
             Model = model;
             Position = position;
             Width = model.RawModel.Width;
             Height = model.RawModel.Height;
+            Layer = layer;
             RotZ = 0;
             Scale = 1;
         }
