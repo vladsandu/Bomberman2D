@@ -4,16 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenTK;
+using RenderEngine.Models;
 
 namespace RenderEngine.Entities
 {
     class Entity
     {
+        public TexturedModel Model { get; set; }
         public Vector2d Position { get; set; }
         public float Width { get; set; }
         public float Height { get; set; }
         public float RotZ { get; set; }
         public float Scale { get; set; }
+
+        public Entity(TexturedModel model, Vector2d position, float width, float height)
+        {
+            Model = model;
+            Position = position;
+            Width = width;
+            Height = height;
+            RotZ = 0;
+            Scale = 1;
+        }
 
         public void IncreasePosition(float dx, float dy)
         {
