@@ -11,14 +11,14 @@ namespace RenderEngine.Entities
     public class Entity
     {
         public TexturedModel Model { get; set; }
-        public Vector2d Position { get; set; }
+        public Vector2 Position { get; set; }
         public float Width { get; set; }
         public float Height { get; set; }
         public float RotZ { get; set; }
         public float Scale { get; set; }
         public int Layer { get; set; }
 
-        public Entity(TexturedModel model, Vector2d position, int layer)
+        public Entity(TexturedModel model, Vector2 position, int layer)
         {
             Model = model;
             Position = position;
@@ -31,7 +31,7 @@ namespace RenderEngine.Entities
 
         public void IncreasePosition(float dx, float dy)
         {
-            Vector2d.Add(Position, new Vector2d(dx, dy));
+            Position = Vector2.Add(Position, new Vector2(dx, dy));
 ;       }
 
         public void IncreaseRotation(float rz)

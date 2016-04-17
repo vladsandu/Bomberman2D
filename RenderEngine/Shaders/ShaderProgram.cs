@@ -145,6 +145,5 @@ namespace RenderEngine.Shaders
 
 
         }
-
     }
 }

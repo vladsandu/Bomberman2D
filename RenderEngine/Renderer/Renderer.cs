@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using OpenTK.Graphics.OpenGL4;
-using OpenTK.Math;
+using OpenTK;
 using RenderEngine.Entities;
+using RenderEngine.Maths;
 using RenderEngine.Models;
 using RenderEngine.Shaders;
 
@@ -86,7 +87,7 @@ namespace RenderEngine.Renderer
 
         private void prepareInstance(Entity entity)
         { //matricea de transformare si incarcarea ei pentru fiecare entitate
-            Matrix4 transformationMatrix = Maths.createTransformationMatrix(entity.Position, entity.RotZ, entity.Scale);
+            Matrix4 transformationMatrix = GLUtils.createTransformationMatrix(entity.Position.Yx, entity.RotZ, entity.Scale);
 
             shader.loadTransformationMatrix(transformationMatrix);
         }
