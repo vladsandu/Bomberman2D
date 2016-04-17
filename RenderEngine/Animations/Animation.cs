@@ -9,10 +9,10 @@ namespace RenderEngine.Animations
         private int CurrentFrameCount { get; set; }
         public int CurrentSpriteNumber { get; set; }
 
-        public Animation(SpriteSheet spriteSheet, int animationSpeedMilis, int fps)
+        public Animation(SpriteSheet spriteSheet, int frameSpeed)
         {
             SpriteSheet = spriteSheet;
-            NeededFrameCount = animationSpeedMilis * fps / 1000;
+            NeededFrameCount = frameSpeed;
         }
 
         public void IncreaseFrameCount()

@@ -39,24 +39,24 @@ namespace RenderEngine.Shaders
             location_yOffset = base.GetUniformLocation("yOffset");
         }
 
-        public void loadXOffset(float value)
+        public void LoadXOffset(float value)
         {
             base.LoadFloat(location_xOffset, value);
         }
 
-        public void loadYOffset(float value)
+        public void LoadYOffset(float value)
         {
             base.LoadFloat(location_yOffset, value);
         }
         
-        public void loadTransformationMatrix(Matrix4 matrix)
+        public void LoadTransformationMatrix(Matrix4 matrix)
         {
             base.LoadMatrix(location_transformationMatrix, matrix);
         }
 
-        public void loadViewMatrix(Camera camera)
+        public void LoadViewMatrix(Camera camera)
         {
-            Matrix4 matrix = GLUtils.createViewMatrix(camera);
+            Matrix4 matrix = GLUtils.CreateViewMatrix(camera);
             LoadMatrix(location_viewMatrix, matrix);
         }
 

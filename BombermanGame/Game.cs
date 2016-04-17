@@ -4,6 +4,7 @@ using BombermanGame;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
+using RenderEngine.Entities;
 using RenderEngine.Renderer;
 
 namespace RenderEngine
@@ -17,6 +18,7 @@ namespace RenderEngine
 
         public Game()
         {
+            Loader = new Loader();
             Renderer = new MasterRenderer();
             EntityFactory = new EntityFactory(Loader);
             CurrentData = new CurrentData(EntityFactory);
@@ -31,14 +33,20 @@ namespace RenderEngine
 
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
-            CurrentData.Entity.IncreasePosition(0.01f, 0);
+            foreach (AnimatedEntity entity in CurrentData.entities)
+            {
+                entity.UpdateAnimation();
+            }
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
         {
-            Renderer.prepare();
-            Renderer.processEntity(CurrentData.Entity);
-            Renderer.render(CurrentData.Camera);
+            Renderer.Prepare();
+            foreach (AnimatedEntity entity in CurrentData.entities)
+            {
+                Renderer.ProcessEntity(entity);
+            }
+            Renderer.Render(CurrentData.Camera);
             SwapBuffers();
           }
 

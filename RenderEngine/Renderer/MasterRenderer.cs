@@ -8,30 +8,30 @@ namespace RenderEngine.Renderer
 {
     public class MasterRenderer
     {
-        private DefaultShader shader = new DefaultShader();
-        private Renderer renderer;
+        private DefaultShader _shader = new DefaultShader();
+        private Renderer _renderer;
 
         private const int RED = 0, BLUE = 0, GREEN = 0;
 
         public MasterRenderer()
         {
-            renderer = new Renderer(shader);
+            _renderer = new Renderer(_shader);
         }
 
         private Dictionary<TexturedModel, List<Entity>> entities = new Dictionary<TexturedModel, List<Entity>>();
 
-        public void render(Camera camera)
+        public void Render(Camera camera)
         {
 
-            prepare();
-            shader.Start();
-            shader.loadViewMatrix(camera);
-            renderer.render(entities); //randam tot hashmapul de entitati in functie de texturedModels LA FIECARE FRAME
-            shader.Stop();
+            Prepare();
+            _shader.Start();
+            _shader.LoadViewMatrix(camera);
+            _renderer.Render(entities); //randam tot hashmapul de entitati in functie de texturedModels LA FIECARE FRAME
+            _shader.Stop();
             entities.Clear();
         }
 
-        public void processEntity(Entity entity)
+        public void ProcessEntity(Entity entity)
         {
 
             TexturedModel entityModel = entity.Model;
@@ -51,12 +51,12 @@ namespace RenderEngine.Renderer
 
         }
 
-        public void cleanUp()
+        public void CleanUp()
         { //curatenie. sterge shaderele care inainte erau sterse in MainGameLoop
-            shader.CleanUp();
+            _shader.CleanUp();
         }
 
-        public void prepare()
+        public void Prepare()
         {
 
             GL.ClearColor(RED, GREEN, BLUE, 1);

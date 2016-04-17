@@ -49,6 +49,7 @@
     <Compile Include="Entities\AnimatedEntity.cs" />
     <Compile Include="Entities\Camera.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Models\AnimatedTextureModel.cs" />
     <Compile Include="Renderer\Loader.cs" />
     <Compile Include="Maths\GLUtils.cs" />
     <Compile Include="Models\ModelTexture.cs" />

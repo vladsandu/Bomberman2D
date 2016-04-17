@@ -4,39 +4,39 @@ namespace RenderEngine.Entities
 {
     public class Camera
     {
-        private Vector3 position = new Vector3(0, 0, 0);
-        private float distanceFromScreen;
+        private Vector3 _position = new Vector3(0, 0, 0);
+        private float _distanceFromScreen;
 
         public Camera(Vector3 position, float distanceFromScreen)
         {
-            this.position = position;
-            this.distanceFromScreen = distanceFromScreen;
+            this._position = position;
+            this._distanceFromScreen = distanceFromScreen;
         }
 
-        public Vector3 getPosition()
+        public Vector3 GetPosition()
         {
-            return position;
+            return _position;
         }
 
-        public void increasePosition(float x, float y)
+        public void IncreasePosition(float x, float y)
         {
-            this.position.X += x;
-            this.position.Y += y;
+            this._position.X += x;
+            this._position.Y += y;
         }
 
-        public void setPosition(Vector3 position)
+        public void SetPosition(Vector3 position)
         {
-            this.position = position;
+            this._position = position;
         }
 
-        public float getDistanceFromScreen()
+        public float GetDistanceFromScreen()
         {
-            return distanceFromScreen;
+            return _distanceFromScreen;
         }
 
-        public void setDistanceFromScreen(float distanceFromScreen)
+        public void SetDistanceFromScreen(float distanceFromScreen)
         {
-            this.distanceFromScreen = distanceFromScreen;
+            this._distanceFromScreen = distanceFromScreen;
         }
     }
 }

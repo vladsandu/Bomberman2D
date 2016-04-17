@@ -10,15 +10,15 @@ namespace RenderEngine.Renderer
 {
     public class Renderer
     {
-        private DefaultShader shader;
+        private DefaultShader _shader;
 
         public Renderer(DefaultShader shader)
         {
 
-            this.shader = shader;
+            this._shader = shader;
         }
 
-        public void render(Dictionary<TexturedModel, List<Entity>> entities)
+        public void Render(Dictionary<TexturedModel, List<Entity>> entities)
         {
 
             bool modelCheck;
@@ -43,7 +43,7 @@ namespace RenderEngine.Renderer
                     }
 
                     if (modelCheck)
-                        prepareTexturedModel(model);
+                        PrepareTexturedModel(model);
                     else
                         continue;
 
@@ -51,17 +51,17 @@ namespace RenderEngine.Renderer
                     {
                         if (entity.Layer == i)
                         {
-                            prepareInstance(entity); //randam fiecare entitate din lista continuta pt fiecare texturedModel
+                            PrepareInstance(entity); //randam fiecare entitate din lista continuta pt fiecare texturedModel
                             GL.DrawElements(BeginMode.Triangles, model.RawModel.VertexCount, DrawElementsType.UnsignedInt, 0);
                         }
                     }
 
-                    unbindTexturedModel();
+                    UnbindTexturedModel();
                 }
             }
 
         }
-        private void prepareTexturedModel(TexturedModel model)
+        private void PrepareTexturedModel(TexturedModel model)
         { //va binda textura + shiny
 
             RawModel rawModel = model.RawModel; //inca avem nevoie de rawModel pentru vertexuri
@@ -75,7 +75,7 @@ namespace RenderEngine.Renderer
 
         }
 
-        private void unbindTexturedModel()
+        private void UnbindTexturedModel()
         {  //unbindarea modelului curent
 
             GL.DisableVertexAttribArray(0);
@@ -85,13 +85,13 @@ namespace RenderEngine.Renderer
 
         }
 
-        private void prepareInstance(Entity entity)
+        private void PrepareInstance(Entity entity)
         { //matricea de transformare si incarcarea ei pentru fiecare entitate
-            Matrix4 transformationMatrix = GLUtils.createTransformationMatrix(entity.Position.Yx, entity.RotZ, entity.Scale);
+            Matrix4 transformationMatrix = GLUtils.CreateTransformationMatrix(entity.Position.Yx, entity.RotZ, entity.Scale);
 
-            shader.loadTransformationMatrix(transformationMatrix);
-            shader.loadXOffset(entity.XOffset);
-            shader.loadYOffset(entity.YOffset);
+            _shader.LoadTransformationMatrix(transformationMatrix);
+            _shader.LoadXOffset(entity.XOffset);
+            _shader.LoadYOffset(entity.YOffset);
         }
 
     }

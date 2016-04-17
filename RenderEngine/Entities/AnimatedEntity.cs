@@ -9,10 +9,10 @@ namespace RenderEngine.Entities
     {
         private Animation Animation { get; set; }
 
-        public AnimatedEntity(Animation animation, TexturedModel model, Vector2 position, int layer)
+        public AnimatedEntity(AnimatedTextureModel model, Vector2 position, int frameSpeed, int layer)
             : base(model, position, layer)
         {
-            Animation = animation;
+            Animation = new Animation(model.SpriteSheet, frameSpeed);
         }
 
         public virtual void UpdateAnimation()

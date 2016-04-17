@@ -12,7 +12,7 @@ namespace BombermanGame
     {
         private EntityFactory EntityFactory { get; set; }
         public Camera Camera { get; set; }
-        
+        public List<AnimatedEntity> entities = new List<AnimatedEntity>(); 
         public CurrentData(EntityFactory entityFactory)
         {
             EntityFactory = entityFactory;
@@ -21,10 +21,7 @@ namespace BombermanGame
         public void Initialize()
         {
             Camera = new Camera(new Vector3(0, 0, 0), 0);
-
-//            ModelTexture playerTexture = new ModelTexture(loader.LoadTexture("./data/WallTile.png"));
-//            TexturedModel playerModel = new TexturedModel(playerTexture, GLUtils.createRectangle(loader, 5, 2));
-//            Entity = new Entity(playerModel, new Vector2(0.0f, 0.0f), 0);
+    //        entities.Add(EntityFactory.GetTestEntity(new Vector2(0,0)));
         }
     }
 }
