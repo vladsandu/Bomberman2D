@@ -4,13 +4,30 @@
     {
         public SpriteSheet SpriteSheet { get; set; }
         private int NeededFrameCount { get; set; }
-        private double CurrentFrameCount { get; set; }
+        private int CurrentFrameCount { get; set; }
         private int CurrentSpriteNumber { get; set; }
 
         public Animation(SpriteSheet spriteSheet, int animationSpeedMilis, int fps)
         {
             SpriteSheet = spriteSheet;
             NeededFrameCount = animationSpeedMilis * fps / 1000;
+        }
+
+        public void IncreaseFrameCount()
+        {
+            CurrentFrameCount += 1;
+            if (CurrentFrameCount == NeededFrameCount)
+            {
+                CurrentFrameCount = 0;
+                IncreaseSpriteNumber();
+            }
+        }
+
+        private void IncreaseSpriteNumber()
+        {
+            CurrentSpriteNumber += 1;
+            if (SpriteSheet.SpriteNumber == CurrentFrameCount)
+                CurrentSpriteNumber = 0;
         }
     }
 }
