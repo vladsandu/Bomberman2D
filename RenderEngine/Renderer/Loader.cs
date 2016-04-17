@@ -9,7 +9,7 @@ using OpenTK.Graphics.OpenGL;
 using RenderEngine.Entities;
 using RenderEngine.Models;
 
-namespace RenderEngine.Loader
+namespace RenderEngine.Renderer
 {
     public class Loader
     {

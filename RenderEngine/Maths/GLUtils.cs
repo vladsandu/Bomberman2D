@@ -2,6 +2,7 @@
 using OpenTK;
 using RenderEngine.Entities;
 using RenderEngine.Models;
+using RenderEngine.Renderer;
 
 namespace RenderEngine.Maths
 {
@@ -30,7 +31,7 @@ namespace RenderEngine.Maths
         }
 
 
-        public static RawModel CreateSpriteSheetQuad(Loader.Loader loader, float widthPercent, float heightPercent,
+        public static RawModel CreateSpriteSheetQuad(Loader loader, float widthPercent, float heightPercent,
                 float spriteSizeX, float spriteSizeY, float imageWidth, float imageHeight)
         {
 
@@ -59,7 +60,7 @@ namespace RenderEngine.Maths
             return loader.LoadToVAO(vertices, textureCoords, indices, widthPercent, heightPercent);
         }
 
-        public static RawModel createQuadPercentTextured(Loader.Loader loader, float widthPercent, float heightPercent,
+        public static RawModel createQuadPercentTextured(Loader loader, float widthPercent, float heightPercent,
                 float xTexPercent, float yTexPercent)
         {
 
@@ -87,7 +88,7 @@ namespace RenderEngine.Maths
 
         }
 
-        public static RawModel createRectangle(Loader.Loader loader, float widthPercent, float heightPercent)
+        public static RawModel createRectangle(Loader loader, float widthPercent, float heightPercent)
         {
 
             float actualHeightHalf = heightPercent / 100;
