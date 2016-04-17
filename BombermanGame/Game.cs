@@ -11,16 +11,21 @@ namespace RenderEngine
     public class Game : GameWindow
     {
         private MasterRenderer Renderer { get; set; }
+        private Loader Loader { get; set; }
         private CurrentData CurrentData { get; set; }
+        private EntityFactory EntityFactory { get; set; }
+
         public Game()
         {
             Renderer = new MasterRenderer();
-            CurrentData = new CurrentData();
+            EntityFactory = new EntityFactory(Loader);
+            CurrentData = new CurrentData(EntityFactory);
         }
         
         protected override void OnLoad(EventArgs e)
         {
             this.VSync = VSyncMode.On;
+            EntityFactory.LoadEntities();
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
