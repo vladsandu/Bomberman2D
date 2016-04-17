@@ -26,6 +26,7 @@ namespace RenderEngine
         {
             this.VSync = VSyncMode.On;
             EntityFactory.LoadEntities();
+            CurrentData.Initialize();
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
