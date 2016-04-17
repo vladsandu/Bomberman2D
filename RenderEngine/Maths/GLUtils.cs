@@ -29,6 +29,36 @@ namespace RenderEngine.Maths
 
         }
 
+
+        public static RawModel CreateSpriteSheetQuad(Loader.Loader loader, float widthPercent, float heightPercent,
+                float spriteSizeX, float spriteSizeY, float imageWidth, float imageHeight)
+        {
+
+            //lengthPercent & widthPercent - se refera la cat % din ecran sa fie de mare
+
+            float actualHeightHalf = heightPercent / 100;
+            float actualWidthHalf = widthPercent / 100;
+
+            float[] vertices ={
+                    -actualWidthHalf, actualHeightHalf, 0.0f,
+                    -actualWidthHalf, -actualHeightHalf, 0.0f,
+                    actualWidthHalf, -actualHeightHalf, 0.0f,
+                    actualWidthHalf, actualHeightHalf, 0.0f,
+            };
+
+            int[] indices = { 0, 1, 3, 3, 1, 2 };
+
+            float[] textureCoords = {
+                0,0,
+                0,spriteSizeY/imageHeight,
+                spriteSizeX/imageWidth,spriteSizeY/imageHeight,
+                spriteSizeX/imageWidth,0
+        };
+
+
+            return loader.LoadToVAO(vertices, textureCoords, indices, widthPercent, heightPercent);
+        }
+
         public static RawModel createQuadPercentTextured(Loader.Loader loader, float widthPercent, float heightPercent,
                 float xTexPercent, float yTexPercent)
         {
