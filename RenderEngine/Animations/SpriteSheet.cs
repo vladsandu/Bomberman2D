@@ -2,15 +2,15 @@
 {
     public class SpriteSheet
     {
-        internal int SpriteSizeX { get; set; }
-        internal int SpriteSizeY { get; set; }
+        internal float SpriteSizeX { get; set; }
+        internal float SpriteSizeY { get; set; }
         internal int Rows { get; set; }
         internal int Cols { get; set; }
         internal int SpriteNumber { get; set; }
-        internal int ImageWidth { get; set; }
-        internal int ImageHeight { get; set; }
+        internal float ImageWidth { get; set; }
+        internal float ImageHeight { get; set; }
 
-        public SpriteSheet(int spriteSizeX, int spriteSizeY, int rows, int cols, int spriteNumber)
+        public SpriteSheet(float spriteSizeX, float spriteSizeY, int rows, int cols, int spriteNumber)
         {
             SpriteSizeX = spriteSizeX;
             SpriteSizeY = spriteSizeY;
