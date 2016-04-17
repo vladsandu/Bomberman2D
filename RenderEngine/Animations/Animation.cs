@@ -31,5 +31,10 @@ namespace RenderEngine.Animations
             if (SpriteSheet.SpriteNumber == CurrentFrameCount)
                 CurrentSpriteNumber = 0;
         }
+
+        public bool IsNewSprite()
+        {
+            return CurrentFrameCount == 0;
+        }
     }
 }

@@ -17,6 +17,8 @@ namespace RenderEngine.Entities
         public float RotZ { get; set; }
         public float Scale { get; set; }
         public int Layer { get; set; }
+        public float XOffset { get; set; }
+        public float YOffset { get; set; }
 
         public Entity(TexturedModel model, Vector2 position, int layer)
         {
