@@ -90,6 +90,9 @@ namespace RenderEngine.Renderer
             Matrix4 transformationMatrix = GLUtils.createTransformationMatrix(entity.Position.Yx, entity.RotZ, entity.Scale);
 
             shader.loadTransformationMatrix(transformationMatrix);
+            shader.loadXOffset(entity.XOffset);
+            shader.loadYOffset(entity.YOffset);
+
         }
 
     }

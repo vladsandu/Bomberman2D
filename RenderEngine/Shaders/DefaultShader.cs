@@ -35,6 +35,8 @@ namespace RenderEngine.Shaders
         {
             location_transformationMatrix = base.GetUniformLocation("transformationMatrix");
             location_viewMatrix = base.GetUniformLocation("viewMatrix");
+            location_xOffset = base.GetUniformLocation("xOffset");
+            location_yOffset = base.GetUniformLocation("yOffset");
         }
 
         public void loadXOffset(float value)
