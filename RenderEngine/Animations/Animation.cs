@@ -7,7 +7,7 @@ namespace RenderEngine.Animations
         public SpriteSheet SpriteSheet { get; set; }
         private int NeededFrameCount { get; set; }
         private int CurrentFrameCount { get; set; }
-        private int CurrentSpriteNumber { get; set; }
+        public int CurrentSpriteNumber { get; set; }
 
         public Animation(SpriteSheet spriteSheet, int animationSpeedMilis, int fps)
         {
