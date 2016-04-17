@@ -1,4 +1,6 @@
-﻿namespace RenderEngine.Animation
+﻿using RenderEngine.Animations;
+
+namespace RenderEngine.Animations
 {
     public class Animation
     {

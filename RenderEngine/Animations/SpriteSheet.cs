@@ -1,4 +1,4 @@
-﻿namespace RenderEngine.Animation
+﻿namespace RenderEngine.Animations
 {
     public class SpriteSheet
     {
