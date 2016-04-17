@@ -11,7 +11,7 @@ namespace RenderEngine.Shaders
         private static String VERTEX_FILE = "./data/shaders/vertexShader.glsl";
 	    private static String FRAGMENT_FILE = "./data/shaders/fragmentShader.glsl";
 	
-	private int location_transformationMatrix;
+	    private int location_transformationMatrix;
         private int location_viewMatrix;
         private int location_isBackground;
         private int location_isText;

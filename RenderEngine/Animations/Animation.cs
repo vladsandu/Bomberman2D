@@ -28,7 +28,7 @@ namespace RenderEngine.Animations
         private void IncreaseSpriteNumber()
         {
             CurrentSpriteNumber += 1;
-            if (SpriteSheet.SpriteNumber == CurrentFrameCount)
+            if (SpriteSheet.SpriteNumber == CurrentSpriteNumber)
                 CurrentSpriteNumber = 0;
         }
 

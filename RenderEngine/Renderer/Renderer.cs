@@ -92,7 +92,6 @@ namespace RenderEngine.Renderer
             shader.loadTransformationMatrix(transformationMatrix);
             shader.loadXOffset(entity.XOffset);
             shader.loadYOffset(entity.YOffset);
-
         }
 
     }
