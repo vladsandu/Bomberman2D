@@ -7,7 +7,7 @@ namespace RenderEngine.Entities
 {
     public class AnimatedEntity : Entity
     {
-        private Animation Animation { get; set; }
+        public Animation Animation { get; set; }
 
         public AnimatedEntity(AnimatedTextureModel model, Vector2 position, int frameSpeed, int layer)
             : base(model, position, layer)
@@ -24,7 +24,7 @@ namespace RenderEngine.Entities
             }
         }
 
-        private void UpdateTextureOffsets()
+        public virtual void UpdateTextureOffsets()
         {
             int xPoz = Animation.CurrentSpriteNumber%Animation.SpriteSheet.Cols;
             int yPoz = Animation.CurrentSpriteNumber/Animation.SpriteSheet.Cols;

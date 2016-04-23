@@ -29,6 +29,11 @@ namespace RenderEngine.Entities
             this._position = position;
         }
 
+        public void SetPosition(Vector2 position)
+        {
+            this._position = new Vector3(position);
+        }
+
         public float GetDistanceFromScreen()
         {
             return _distanceFromScreen;

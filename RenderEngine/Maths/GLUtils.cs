@@ -9,13 +9,13 @@ namespace RenderEngine.Maths
 {
     public class GLUtils
     {
-        public static Matrix4 CreateTransformationMatrix(Vector2 translation, float rz, float scale)
+        public static Matrix4 CreateTransformationMatrix(float x, float y, float rz, float scale)
         {
 
             Matrix4 matrix = Matrix4.Identity;
-            Matrix4.CreateTranslation(translation.X, translation.Y, 0, out matrix);
-            Matrix4.CreateRotationZ(0, out matrix);
-            Matrix4.CreateScale(scale, out matrix);
+            Matrix4.CreateTranslation(x, y, 0, out matrix);
+         //   Matrix4.CreateRotationZ(0, out matrix);
+           // Matrix4.CreateScale(scale, out matrix);
 
             return matrix;
         }
@@ -32,13 +32,13 @@ namespace RenderEngine.Maths
         }
 
 
-        public static RawModel CreateSpriteSheetQuad(Loader loader, float widthPercent, float heightPercent,
+        public static RawModel CreateSpriteSheetQuad(Loader loader, float widthPercent, float heightPercent, float aspectRatio,
                 SpriteSheet spriteSheet)
         {
 
             //lengthPercent & widthPercent - se refera la cat % din ecran sa fie de mare
 
-            float actualHeightHalf = heightPercent / 100;
+            float actualHeightHalf = heightPercent * aspectRatio / 100;
             float actualWidthHalf = widthPercent / 100;
 
             float[] vertices ={
@@ -60,41 +60,13 @@ namespace RenderEngine.Maths
 
             return loader.LoadToVAO(vertices, textureCoords, indices, widthPercent, heightPercent);
         }
-
-        public static RawModel CreateQuadPercentTextured(Loader loader, float widthPercent, float heightPercent,
-                float xTexPercent, float yTexPercent)
+        
+        public static RawModel CreateRectangle(Loader loader, float size, float aspectRatio)
         {
 
-            float actualHeightHalf = heightPercent / 100;
-            float actualWidthHalf = widthPercent / 100;
-
-            float[] vertices ={
-                    -actualWidthHalf, actualHeightHalf, 0.0f,
-                    -actualWidthHalf, -actualHeightHalf, 0.0f,
-                    actualWidthHalf, -actualHeightHalf, 0.0f,
-                    actualWidthHalf, actualHeightHalf, 0.0f,
-            };
-
-            int[] indices = { 0, 1, 3, 3, 1, 2 };
-
-            float[] textureCoords = {
-                0,0,
-                0,1 * yTexPercent/100f,
-                1 * xTexPercent/100f,1 * yTexPercent/100f,
-                1 * xTexPercent/100f,0
-        };
-
-
-            return loader.LoadToVAO(vertices, textureCoords, indices, widthPercent, heightPercent);
-
-        }
-
-        public static RawModel CreateRectangle(Loader loader, float widthPercent, float heightPercent)
-        {
-
-            float actualHeightHalf = heightPercent / 100;
-            float actualWidthHalf = widthPercent / 100;
-
+            float actualHeightHalf = size * aspectRatio/100f;
+            float actualWidthHalf = size /( 100f);
+            
             float[] vertices ={
                     -actualWidthHalf, actualHeightHalf, 0.0f,
                     -actualWidthHalf, -actualHeightHalf, 0.0f,
@@ -112,7 +84,7 @@ namespace RenderEngine.Maths
         };
 
 
-            return loader.LoadToVAO(vertices, textureCoords, indices, widthPercent, heightPercent);
+            return loader.LoadToVAO(vertices, textureCoords, indices, size, size);
         }
     }
 }

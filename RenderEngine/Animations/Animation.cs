@@ -36,5 +36,10 @@ namespace RenderEngine.Animations
         {
             return CurrentFrameCount == 0;
         }
+
+        public void ResetCounter()
+        {
+            CurrentFrameCount = 0;
+        }
     }
 }

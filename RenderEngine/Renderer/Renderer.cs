@@ -87,7 +87,7 @@ namespace RenderEngine.Renderer
 
         private void PrepareInstance(Entity entity)
         { //matricea de transformare si incarcarea ei pentru fiecare entitate
-            Matrix4 transformationMatrix = GLUtils.CreateTransformationMatrix(entity.Position.Yx, entity.RotZ, entity.Scale);
+            Matrix4 transformationMatrix = GLUtils.CreateTransformationMatrix(entity.Position.X, entity.Position.Y, entity.RotZ, entity.Scale);
 
             _shader.LoadTransformationMatrix(transformationMatrix);
             _shader.LoadXOffset(entity.XOffset);
