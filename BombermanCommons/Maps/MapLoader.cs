@@ -4,7 +4,7 @@ using OpenTK;
 using RenderEngine;
 using RenderEngine.Entities;
 
-namespace BombermanGame.Entities
+namespace BombermanCommons.Entities
 {
     public class MapLoader
     {
@@ -35,8 +35,8 @@ namespace BombermanGame.Entities
                     var currentChar = (char) reader.Read();
                     switch (currentChar)
                     { 
-                        case '.':
-                            Tile dirtTile = EntityFactory.GetDirtTile(position,
+                        case 'x':
+                            Tile dirtTile = EntityFactory.GenerateDirtTile(position,
                                 tilePercentSize);
                             map.AddTile(dirtTile);
                             xPoz++;
@@ -45,10 +45,13 @@ namespace BombermanGame.Entities
                             xPoz = 0;
                             yPoz++;
                             break;
-                        case ' ':
-                            Tile grassTile = EntityFactory.GetGrassTile(position,
+                        case '.':
+                            Tile grassTile = EntityFactory.GenerateGrassTile(position,
                                 tilePercentSize);
                             map.AddTile(grassTile);
+                            xPoz++;
+                            break;
+                        case '-':
                             xPoz++;
                             break;
                     }
@@ -62,7 +65,7 @@ namespace BombermanGame.Entities
         {
             return new Vector2(
                 xPoz*(float) tilePercentSize/50f, 
-                -yPoz*(float) tilePercentSize * Game.GetAspectRatio()/50f);
+                -yPoz*(float) tilePercentSize * Settings.GetAspectRatio()/50f);
         }
     }
 }

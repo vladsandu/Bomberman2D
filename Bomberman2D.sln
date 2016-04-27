@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombermanGame", "BombermanGame\BombermanGame.csproj", "{6C090C5F-2EE5-4CAE-B6A3-7785282EE0A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombermanClient", "BombermanGame\BombermanClient.csproj", "{6C090C5F-2EE5-4CAE-B6A3-7785282EE0A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderEngine", "RenderEngine\RenderEngine.csproj", "{9AC01B30-1032-437B-B48B-E4C941C26FED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombermanServer", "BombermanServer\BombermanServer.csproj", "{8EA0103A-D891-4FA3-9B48-96BB65F4192B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombermanCommons", "BombermanCommons\BombermanCommons.csproj", "{63287E0C-16E5-4496-8F8C-E913558F1EDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{9AC01B30-1032-437B-B48B-E4C941C26FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AC01B30-1032-437B-B48B-E4C941C26FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AC01B30-1032-437B-B48B-E4C941C26FED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EA0103A-D891-4FA3-9B48-96BB65F4192B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EA0103A-D891-4FA3-9B48-96BB65F4192B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EA0103A-D891-4FA3-9B48-96BB65F4192B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EA0103A-D891-4FA3-9B48-96BB65F4192B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63287E0C-16E5-4496-8F8C-E913558F1EDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63287E0C-16E5-4496-8F8C-E913558F1EDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63287E0C-16E5-4496-8F8C-E913558F1EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63287E0C-16E5-4496-8F8C-E913558F1EDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

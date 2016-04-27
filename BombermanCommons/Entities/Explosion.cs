@@ -1,19 +1,15 @@
-﻿using BombermanGame.Collision;
+﻿using BombermanCommons.Collision;
 using OpenTK;
-using OpenTK.Graphics.ES10;
 using RenderEngine.Entities;
 using RenderEngine.Models;
 
-namespace BombermanGame.Entities
+namespace BombermanCommons.Entities
 {
-    public class Tile : Entity
+    public class Explosion : AnimatedEntity
     {
-        public bool Walkable { get; set; }
         public CollisionBox CollisionBox { get; set; }
-
-        public Tile(TexturedModel model, Vector2 position, int layer, bool isWalkable) : base(model, position, layer)
+        public Explosion(AnimatedTextureModel model, Vector2 position, int frameSpeed, int layer) : base(model, position, frameSpeed, layer)
         {
-            Walkable = isWalkable;
             CollisionBox = GenerateCollisionBox();
         }
 

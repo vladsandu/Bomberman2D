@@ -38,8 +38,8 @@ namespace RenderEngine.Maths
 
             //lengthPercent & widthPercent - se refera la cat % din ecran sa fie de mare
 
-            float actualHeightHalf = heightPercent * aspectRatio / 100;
-            float actualWidthHalf = widthPercent / 100;
+            float actualHeightHalf = heightPercent * aspectRatio / 100f;
+            float actualWidthHalf = widthPercent / 100f;
 
             float[] vertices ={
                     -actualWidthHalf, actualHeightHalf, 0.0f,

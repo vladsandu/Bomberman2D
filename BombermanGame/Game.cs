@@ -2,12 +2,16 @@
 using System.Drawing;
 using BombermanGame;
 using BombermanGame.Input;
-using BombermanGame.Entities;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using RenderEngine.Entities;
 using RenderEngine.Renderer;
+using BombermanGame.Network;
+using System.Threading;
+using BombermanCommons.Collision;
+using BombermanCommons.Entities;
+using BombermanCommons;
 
 namespace RenderEngine
 {
@@ -18,25 +22,25 @@ namespace RenderEngine
         private CurrentData CurrentData { get; set; }
         private EntityFactory EntityFactory { get; set; }
         private KeyboardListener KeyboardListener { get; set; }
-        public static float WIDTH, HEIGHT ;
-
-        public static float GetAspectRatio()
-        {
-            return WIDTH/HEIGHT;
-        }
+        private CollisionDetector CollisionDetector { get; set; }
+        private NetHandler NetHandler { get; set; }
+        
         public Game()
         {
             Loader = new Loader();
             Renderer = new MasterRenderer();
             EntityFactory = new EntityFactory(Loader);
             CurrentData = new CurrentData(EntityFactory);
-            KeyboardListener = new KeyboardListener(CurrentData);
+            CollisionDetector = new CollisionDetector(CurrentData);
+            NetHandler = new NetHandler(CurrentData);
+            KeyboardListener = new KeyboardListener(CurrentData, NetHandler, CollisionDetector);
+            ThreadStart netThreadStart = NetHandler.Connect;
+            Thread netThread = new Thread(netThreadStart);
+            netThread.Start();
         }
-        
+
         protected override void OnLoad(EventArgs e)
         {
-            WIDTH = Width;
-            HEIGHT = Height;
             this.VSync = VSyncMode.On;
             EntityFactory.LoadEntities();
             CurrentData.Initialize();
@@ -46,6 +50,51 @@ namespace RenderEngine
         {
             KeyboardListener.ListenKeyboardEvents();
             UpdateCameraPosition();
+            UpdateAnimations();
+            UpdateFinishedBombs();
+            UpdateFinishedExplosions();
+            ProcessExplosionCollisions();
+        }
+
+        private void ProcessExplosionCollisions()
+        {
+            if (CollisionDetector.IsCollidingExplosions(CurrentData.LocalPlayer))
+            {
+                Console.WriteLine("Player 1 has lost.");
+            }
+        }
+
+        private void UpdateFinishedExplosions()
+        {
+            for (int i = CurrentData.Explosions.Count - 1; i >= 0; i--)
+            {
+                if (CurrentData.Explosions[i].IsAnimationFinished())
+                    CurrentData.Explosions.RemoveAt(i);
+            }
+        }
+
+        private void UpdateFinishedBombs()
+        {
+            for (int i = CurrentData.Bombs.Count - 1; i >= 0; i--)
+            {
+                if (CurrentData.Bombs[i].IsAnimationFinished())
+                {
+                    CurrentData.AddExplosions(CurrentData.Bombs[i].Position);
+                    CurrentData.Bombs.RemoveAt(i);
+                }
+            }
+        }
+
+        private void UpdateAnimations()
+        {
+            foreach (Bomb bomb in CurrentData.Bombs)
+            {
+                bomb.UpdateAnimation();
+            }
+            foreach (AnimatedEntity explosion in CurrentData.Explosions)
+            {
+                explosion.UpdateAnimation();
+            }
         }
 
         private void UpdateCameraPosition()
@@ -59,6 +108,8 @@ namespace RenderEngine
             Renderer.Prepare();
             RenderMap();
             RenderPlayers();
+            RenderBombs();
+            RenderExplosions();
             Renderer.Render(CurrentData.Camera);
             SwapBuffers();
           }
@@ -67,7 +118,20 @@ namespace RenderEngine
         {
             Renderer.ProcessEntity(CurrentData.LocalPlayer);
         }
-
+        private void RenderBombs()
+        {
+            foreach (Bomb bomb in CurrentData.Bombs)
+            {
+                Renderer.ProcessEntity(bomb);
+            }
+        }
+        private void RenderExplosions()
+        {
+            foreach (AnimatedEntity explosion in CurrentData.Explosions)
+            {
+                Renderer.ProcessEntity(explosion);
+            }
+        }
         private void RenderMap()
         {
             foreach (MapRegion region in CurrentData.Map.Regions)
@@ -82,8 +146,8 @@ namespace RenderEngine
         protected override void OnResize(EventArgs e)
         {
             GL.Viewport(0, 0, this.Width, this.Height);
-            WIDTH = Width;
-            HEIGHT = Height;
+            Settings.WIDTH = Width;
+            Settings.HEIGHT = Height;
         }
     }
 }

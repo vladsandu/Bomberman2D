@@ -23,6 +23,10 @@ namespace RenderEngine.Entities
                 UpdateTextureOffsets();
             }
         }
+        public bool IsAnimationFinished()
+        {
+            return Animation.AnimationFinished;
+        }
 
         public virtual void UpdateTextureOffsets()
         {

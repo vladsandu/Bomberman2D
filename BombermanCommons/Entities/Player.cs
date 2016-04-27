@@ -1,13 +1,13 @@
-﻿using BombermanGame.Collision;
+﻿using BombermanCommons.Collision;
 using OpenTK;
 using RenderEngine.Entities;
 using RenderEngine.Models;
 
-namespace BombermanGame.Entities
+namespace BombermanCommons.Entities
 {
     public class Player : AnimatedEntity
     {
-        private const float _movementSpeed = 0.01f;
+        public float MovementSpeed = 0.015f;
         private int _spriteRow;
         private int _spriteCount = 0;
         public CollisionBox CollisionBox { get; set; }
@@ -25,31 +25,32 @@ namespace BombermanGame.Entities
 
         public void moveUp()
         {
-            IncreasePosition(0, _movementSpeed);
+            IncreasePosition(0, MovementSpeed);
             _spriteRow = 0;
         }
 
         public void moveLeft()
         {
-            IncreasePosition(-_movementSpeed, 0);
+            IncreasePosition(-MovementSpeed, 0);
             _spriteRow = 2;
         }
 
         public void moveRight()
         {
-            IncreasePosition(_movementSpeed, 0);
+            IncreasePosition(MovementSpeed, 0);
             _spriteRow = 3;
         }
 
         public void moveDown()
         {
-            IncreasePosition(0, -_movementSpeed);
+            IncreasePosition(0, -MovementSpeed);
             _spriteRow = 1;
         }
 
-        public void SetPosition(float x, float y)
+        public override void IncreasePosition(float dx, float dy)
         {
-            
+            base.IncreasePosition(dx, dy);
+            CollisionBox.Move(dx, dy);
         }
 
         public override void UpdateAnimation()

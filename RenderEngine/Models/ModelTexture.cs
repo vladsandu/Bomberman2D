@@ -2,7 +2,7 @@
 {
     public class ModelTexture
     {
-        public int TextureID { get; }
+        public int TextureID { get; set; }
 
         public ModelTexture(int textureId)
         {

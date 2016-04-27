@@ -27,7 +27,7 @@ namespace RenderEngine.Entities
             Scale = 1;
         }
 
-        public void IncreasePosition(float dx, float dy)
+        public virtual void IncreasePosition(float dx, float dy)
         {
             Position = Vector2.Add(Position, new Vector2(dx, dy));
 ;       }
